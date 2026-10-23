@@ -1,1 +1,113 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6D28D9">
+<title>Friemdzy</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F5F3FF;
+  color: #20143A;
+}
+header {
+  background: #6D28D9;
+  color: white;
+  padding: 22px 18px;
+  border-radius: 0 0 22px 22px;
+}
+header h1 { margin: 0; font-size: 30px; }
+header p { margin-bottom: 0; }
+main { padding: 18px; max-width: 500px; margin: auto; }
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 12px #24104410;
+}
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #DDD6FE;
+  border-radius: 10px;
+  font: inherit;
+}
+button {
+  background: #6D28D9;
+  color: white;
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.post { white-space: pre-wrap; overflow-wrap: anywhere; }
+nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 14px 4px;
+  background: white;
+  position: sticky;
+  bottom: 0;
+}
+nav a { color: #6D28D9; text-decoration: none; font-weight: bold; }
+.muted { color: #756B86; font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>💜 Friemdzy</h1>
+  <p>Your people. Your moments. Your world.</p>
+</header>
+<main>
+  <section class="card">
+    <h2>Welcome to Friemdzy!</h2>
+    <p>Connect with friends and share your world.</p>
+    <input id="username" placeholder="Your name">
+    <textarea id="message" rows="3"
+      placeholder="What would you like to share?"></textarea>
+    <button onclick="addPost()">Share post</button>
+    <p class="muted">Demo version: posts stay on this device.</p>
+  </section>
+
+  <h2>📰 Your feed</h2>
+  <div id="feed">
+    <section class="card">
+      <h3>💜 Friemdzy Team</h3>
+      <p>Welcome! Your new social space starts here.</p>
+    </section>
+  </div>
+</main>
+<nav>
+  <a href="#">🏠 Home</a>
+  <a href="#feed">📰 Feed</a>
+  <a href="#username">👤 Profile</a>
+</nav>
+<script>
+function addPost() {
+  const name = document.getElementById("username").value.trim();
+  const message = document.getElementById("message").value.trim();
+  if (!name || !message) {
+    alert("Please enter your name and a message.");
+    return;
+  }
+  const card = document.createElement("section");
+  card.className = "card";
+  const heading = document.createElement("h3");
+  heading.textContent = "💜 " + name;
+  const post = document.createElement("p");
+  post.className = "post";
+  post.textContent = message;
+  card.append(heading, post);
+  document.getElementById("feed").prepend(card);
+  document.getElementById("message").value = "";
+}
+</script>
+</body>
+</html>
